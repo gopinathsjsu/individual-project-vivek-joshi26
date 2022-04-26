@@ -1,13 +1,13 @@
 package main.model;
 
 public class Luxury extends Category{
-    private int maxLimit = 4;
+    private int maxLimit = 10;
     private String category = "Luxury";
 
 
     @Override
     public boolean limitExceeded(double quantity) {
-        return quantity> this.maxLimit;
+        return quantity > this.maxLimit;
     }
 
     @Override

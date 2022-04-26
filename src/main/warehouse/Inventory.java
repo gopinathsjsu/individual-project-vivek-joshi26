@@ -26,4 +26,12 @@ public class Inventory {
     public HashSet<String> getCards() {
         return cards;
     }
+
+    public void setCards(HashSet<String> cards) {
+        this.cards = cards;
+    }
+
+    public void setItems(HashMap<String, Item> items) {
+        this.items = items;
+    }
 }

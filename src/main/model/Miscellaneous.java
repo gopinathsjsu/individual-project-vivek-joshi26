@@ -2,7 +2,7 @@ package main.model;
 
 public class Miscellaneous extends Category{
 
-    private int maxLimit = 6;
+    private int maxLimit = 10;
     private String category = "Misc";
 
 
