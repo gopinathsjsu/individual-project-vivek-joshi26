@@ -2,7 +2,7 @@ package main.model;
 
 public class Essentials extends Category{
 
-    private int maxLimit = 3;
+    private int maxLimit = 10;
     private String category = "Essentials";
 
 

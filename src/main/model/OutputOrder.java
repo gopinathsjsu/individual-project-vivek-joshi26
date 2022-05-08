@@ -5,7 +5,7 @@ public class OutputOrder {
     private String item;
     private int quantity;
     private int price;
-    private static int totalPrice;
+    private int totalPrice = 0;
 
     public String getItem() {
         return item;
@@ -31,12 +31,12 @@ public class OutputOrder {
         this.price = price;
     }
 
-    public static int getTotalPrice() {
-        return totalPrice;
+    public int getTotalPrice() {
+        return this.totalPrice;
     }
 
-    public static void setTotalPrice(int totalPrice) {
-        OutputOrder.totalPrice = totalPrice;
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     @Override

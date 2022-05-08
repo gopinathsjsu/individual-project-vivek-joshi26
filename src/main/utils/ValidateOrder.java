@@ -43,7 +43,7 @@ public class ValidateOrder {
         for (Map.Entry<String, Integer> entry :orderMap.entrySet()
         ) {
             Item temp = itemHashMap.getOrDefault(entry.getKey(), null);
-            System.out.println("TEMP ITEM VALUE : " + temp + " for entry : " + entry.getKey());
+            //System.out.println("TEMP ITEM VALUE : " + temp + " for entry : " + entry.getKey());
             if(temp == null)
                 itemsNotAvailable.add(entry.getKey());
             else {
@@ -54,17 +54,17 @@ public class ValidateOrder {
                 int count = categoryCountMap.getOrDefault(category.getCategoryName(), 0) + entry.getValue();
                 categoryCountMap.put(category.getCategoryName(), count );
 
-                System.out.println(category.getCategoryName());
-                System.out.println(entry.getKey());
-                System.out.println(entry.getValue());
-                System.out.println("For Key :" + category.getCategoryName() +" Value: " + count);
+//                System.out.println(category.getCategoryName());
+//                System.out.println(entry.getKey());
+//                System.out.println(entry.getValue());
+//                System.out.println("For Key :" + category.getCategoryName() +" Value: " + count);
 
                 if(category.limitExceeded(count))
                     itemsNotAvailable.add(entry.getKey());
             }
 
         }
-        System.out.println(categoryCountMap);
+        //System.out.println(categoryCountMap);
         if(itemsNotAvailable.size() != 0){
             return "Please Correct Category Quantities: " + itemsNotAvailable.toString();
         }
@@ -77,8 +77,8 @@ public class ValidateOrder {
 
         HashMap<String, Item> itemHashMap = inventoryDB.getItems();
 
-        System.out.println("************* " + orderMap);
-        System.out.println("************* ItemHashMap" + itemHashMap);
+        //System.out.println("************* " + orderMap);
+        //System.out.println("************* ItemHashMap" + itemHashMap);
         for (Map.Entry<String, Integer> entry :orderMap.entrySet()
         ) {
             Item tempItem = itemHashMap.get(entry.getKey());
@@ -86,15 +86,16 @@ public class ValidateOrder {
             tempOrder.setItem(entry.getKey());
             tempOrder.setQuantity(entry.getValue());
             tempOrder.setPrice((int) (entry.getValue() * tempItem.getPrice()));
-            OutputOrder.setTotalPrice((int) (OutputOrder.getTotalPrice() + entry.getValue() * tempItem.getPrice()));
+//            OutputOrder.setTotalPrice((int) (OutputOrder.getTotalPrice() + (entry.getValue() * tempItem.getPrice())));
+            tempOrder.setTotalPrice((int) (tempOrder.getTotalPrice() + (entry.getValue() * tempItem.getPrice())));
             // update quantity in inventoryDB
             tempItem.setQuantity(tempItem.getQuantity() - entry.getValue());
             itemHashMap.put(entry.getKey(), tempItem);
             outputOrders.add(tempOrder);
         }
         inventoryDB.setItems(itemHashMap);
-        System.out.println("**************** " + outputOrders.toString());
-        System.out.println("************* ItemHashMap After order" + inventoryDB.getItems());
+        //System.out.println("**************** " + outputOrders.toString());
+        //System.out.println("************* ItemHashMap After order" + inventoryDB.getItems());
         return outputOrders;
     }
 

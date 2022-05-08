@@ -10,6 +10,7 @@ import main.warehouse.Inventory;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class InventoryController {
@@ -42,7 +43,7 @@ public class InventoryController {
                     continue;
                 Category category = Category.Create(individualItems[1]);
                 //System.out.println("category: " + category.toString());
-                inventoryDB.getItems().put(individualItems[0], new Item(category, individualItems[0], Integer.parseInt(individualItems[2]), Double.parseDouble(individualItems[3])));
+                inventoryDB.getItems().put(individualItems[0].toLowerCase(Locale.ROOT), new Item(category, individualItems[0].toLowerCase(Locale.ROOT), Integer.parseInt(individualItems[2]), Double.parseDouble(individualItems[3])));
 
             }
             else {

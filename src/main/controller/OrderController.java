@@ -35,20 +35,22 @@ public class OrderController {
 
             if(current != null){
                 String[] individualItems = ((String)current).split(",");
-                System.out.println("CURRENT individual array length: " + individualItems.length);
+                //System.out.println("CURRENT individual array length: " + individualItems.length);
                 if(individualItems.length == 3){
                     // WHEN CREDIT CARD IS PASSED IN THE ORDER
-                    orderMap.put(individualItems[0],Integer.parseInt(individualItems[1]));
+                    orderMap.put(individualItems[0].toLowerCase(Locale.ROOT),Integer.parseInt(individualItems[1]));
                     creditCard = individualItems[2];
                     //****************** ADD CREDIT CARD TO CARD DETAILS SET
                 }
                 else {
                     // when no credit card is passed
-                    orderMap.put(individualItems[0],Integer.parseInt(individualItems[1]));
+                    orderMap.put(individualItems[0].toLowerCase(Locale.ROOT),Integer.parseInt(individualItems[1]));
                 }
             }
             //System.out.println("orderMap : " + orderMap);
         }
+
+        System.out.println("Input_Order: " + orderMap);
 
         ValidateOrder validateOrder = new ValidateOrder();
         String quantityValidateOutput = validateOrder.validateAvailableStock(orderMap);
@@ -61,7 +63,7 @@ public class OrderController {
             OutputFile.outputSuccessFile(outputOrders);
 
             // Check credit card is present if not add
-            System.out.println("CREDIT CARD NUMBER: " + creditCard);
+            //System.out.println("CREDIT CARD NUMBER: " + creditCard);
             Set<String> cards = inventoryDB.getCards();
             if(cards != null && !cards.contains(creditCard)) {
                 cards.add(creditCard);

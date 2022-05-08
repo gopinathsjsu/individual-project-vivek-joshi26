@@ -1,7 +1,7 @@
 package main.model;
 
 public class Luxury extends Category{
-    private int maxLimit = 10;
+    private int maxLimit = 20;
     private String category = "Luxury";
 
 
